@@ -17,7 +17,8 @@ export default defineComponent({
   },
   created() {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, "0218762@up.edu.mx","password").then(userCredential =>{
+    signInWithEmailAndPassword(auth, "0218762@up.edu.mx","password")
+        .then(userCredential =>{
       const user = userCredential.user;
       if(user == null) {
         console.log("NO AUNTENTICADO");
@@ -25,7 +26,13 @@ export default defineComponent({
       else {
         console.log("Auntenticado correctamente", user);
       }
+
     })
-  }
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+    });
+  },
 });
 </script>
